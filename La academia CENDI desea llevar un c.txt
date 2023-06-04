@@ -1,0 +1,91 @@
+La academia CENDI desea llevar un control sistemico de los cursos que imparte a los estudiantes, asi como de los profesores que participan en dichos cursos. para ello, nos han dado las siguientes especificaciones:
+De cada curso se desea conocer el titulo, el numero de horas, el valor y el tema o los temas que trata, se identifica por codigo de curso.
+Cada curso puede tener una serie de temas.
+Cada curso se puede inpartir una o varias veces, en diferentes fechas y en cada edicion del mismo es dictado por un profesor.
+De los profesores se desea conocer su codigo de empleado, nombre, nro. documento, telefonos, direccion, fecha de antiguedad en la empresa y diferentes titulos academicos obtenidos.
+
+Entre otros datos que debe tener, un profesor puede impartir y recibir cursos, pero con la restriccion que en una misma edicion de un curso no pueden participar como profesor y como estudiente al mismo tiempo.
+
+Un estudiante puede participar en varios cursos al mismo tiempo, pero no en los mismos horarios o en alguna hora sobrepuesta.
+Los estudiantes se inscriben a los diferentes cursos que se encuentren activos a cursar y realizan el pago con diferentes formas de pago, especificando el valor pagado que realiza cada proceso.
+Un estudiante puede tener uno o varios telefonos y una o varias direcciones en diferentes ciudades.
+Los datos en este enunciado son basicos, los deben de complementar acorde a las consultas realizadas acorde al problema propuesto.
+
+Entidades:
+
+* Curso
+	Código del curso (PK)
+	Título
+	Número de horas
+	Valor
+
+* Tema
+	Código del tema (PK)
+	Descripción del tema
+	Curso-Tema
+	Código del curso (PK y FK a Curso)
+	Código del tema (PK y FK a Tema)
+
+* Profesor
+	Código del profesor (PK)
+	Nombre
+	Número de documento
+	Teléfonos
+	Dirección
+	Fecha de antigüedad en la empresa
+
+* Título Académico
+	Código del título (PK)
+	Descripción del título
+	Profesor-Título
+	Código del profesor (PK y FK a Profesor)
+	Código del título (PK y FK a Título Académico)
+
+* Edición del Curso
+	Código de la edición del curso (PK)
+	Código del curso (FK a Curso)
+	Fecha de inicio
+	Fecha de finalización
+	Código del profesor (FK a Profesor)
+
+* Estudiante
+	Código del estudiante (PK)
+	Nombre
+	Número de documento
+	Dirección
+	Código de dirección (PK)
+
+* Dirección
+	Ciudad
+	Código del estudiante (FK a Estudiante)
+
+* Teléfono
+	Código del teléfono (PK)
+	Número de teléfono
+	Código del estudiante (FK a Estudiante)
+
+* Inscripción
+	Código de inscripción (PK)
+	Código del estudiante (FK a Estudiante)
+	Código de la edición del curso (FK a Edición del Curso)
+	Forma de pago
+	Valor pagado
+
+Relaciones:
+
+Curso-Tema se relaciona con Curso mediante el código del curso
+Curso-Tema se relaciona con Tema mediante el código del tema
+Edición del Curso se relaciona con Curso mediante el código del curso
+Edición del Curso se relaciona con Profesor mediante el código del profesor
+Profesor-Título se relaciona con Profesor mediante el código del profesor
+Profesor-Título se relaciona con Título Académico mediante el código del título
+Inscripción se relaciona con Estudiante mediante el código del estudiante
+Inscripción se relaciona con Edición del Curso mediante el código de la edición del curso
+Dirección se relaciona con Estudiante mediante el código del estudiante
+Teléfono se relaciona con Estudiante mediante el código del estudiante
+
+Restricciones:
+
+Un profesor no puede participar como profesor y estudiante en la misma edición de un curso
+Un estudiante no puede participar en cursos que tengan horarios que se solapen
+Un estudiante puede participar en varios cursos al mismo tiempo
