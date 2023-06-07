@@ -1,0 +1,115 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="frmPrincipal.master.cs" Inherits="webCENDI.frmPrincipal" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 98%;
+        }
+        .auto-style2 {
+            width: 292px;
+            height: 192px;
+        }
+        .auto-style3 {
+            width: 300px;
+        }
+        .auto-style4 {
+            width: 883px;
+            height: 150px;
+        }
+        .auto-style5 {
+            width: 300px;
+            height: 61px;
+        }
+        .auto-style6 {
+            height: 61px;
+        }
+        .auto-style7 {
+            width: 300px;
+            height: 291px;
+        }
+        .auto-style8 {
+            height: 291px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style3">
+                        <img alt="" class="auto-style2" src="Images/logo.png" /></td>
+                    <td>
+                        <img alt="" class="auto-style4" src="Images/datos.png" /></td>
+                </tr>
+                <tr>
+                    <td class="auto-style5">
+                        <asp:ContentPlaceHolder ID="cphMenu" runat="server">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:Menu ID="Menu2" runat="server" BackColor="#000099" ForeColor="White" Height="50px" Width="100px">
+                                <Items>
+                                    <asp:MenuItem Text="INICIO" Value="mnuInicio"></asp:MenuItem>
+                                </Items>
+                            </asp:Menu>
+                            <asp:HyperLink ID="hplInicioSeccion" runat="server" NavigateUrl="~/frmUsuario.aspx">Iniciar Seccion</asp:HyperLink>
+                        </asp:ContentPlaceHolder>
+                    </td>
+                    <td class="auto-style6">
+                        <asp:ContentPlaceHolder ID="cphBarra" runat="server">
+                            <asp:Menu ID="Menu1" runat="server" BackColor="#000099" BorderWidth="20px" ForeColor="White" Height="50px" Orientation="Horizontal" Width="800px">
+                                <Items>
+                                    <asp:MenuItem Text="INSTITUCION ▼   " Value="mnuInstitucion" NavigateUrl="~/frmInicio.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="  PROGRAMAS TECNICOS ▼   " Value="mnuProgramasTecnicos" NavigateUrl="~/frmCursos.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="  SEMINARIOS ▼   " Value="mnuSeminarios" NavigateUrl="~/frmInscripciones.aspx"></asp:MenuItem>
+                                    <asp:MenuItem Text="  CONTACTENOS" Value="mnuContectenos" NavigateUrl="~/frmUsuario.aspx"></asp:MenuItem>
+                                </Items>
+                                <StaticHoverStyle BackColor="#FF3300" />
+                            </asp:Menu>
+                            &nbsp;&nbsp;&nbsp;
+                        </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style7">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:ImageButton ID="imbBachillerato" runat="server" ImageUrl="~/Images/bachillerato.png" />
+                            <br />
+                            <br />
+                        <asp:ImageButton ID="imbTecnicos" runat="server" ImageUrl="~/Images/tecnicos.png" />
+                            <br />
+                        <br />
+                        <asp:ImageButton ID="imbAplicaciones" runat="server" ImageUrl="~/Images/aplicaciones.png"  />
+                            <br />
+                        <br />
+                        <asp:ImageButton ID="imbPQRS" runat="server" ImageUrl="~/Images/pqrs.png" />
+                        <br />
+                        <br />
+                        <br />
+                        <asp:ImageButton ID="imbMensajes" runat="server" ImageUrl="~/Images/mensajes.png" />
+                            <br />
+                        </asp:ContentPlaceHolder>
+                    </td>
+                    <td class="auto-style8">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder4" runat="server">
+                            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/12.png" />
+                        </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style3">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+            
+        </div>
+    </form>
+</body>
+</html>

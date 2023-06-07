@@ -51,29 +51,29 @@ INT_NUMERO_DOCUMENTO INT NOT NULL
 );
 GO
 
-CREATE TABLE TBL_DIRECCIONES(
-INT_COD_DIRECCION INT NOT NULL PRIMARY KEY,
-STR_DIRECCION VARCHAR(50)
+CREATE TABLE TBL_CIUDADES (
+INT_COD_CIUDAD INT NOT NULL PRIMARY KEY,
+STR_CIUDAD VARCHAR(30)
 );
 GO
 
-CREATE TABLE TBL_CIUDADES (
-INT_ID_TELEFONO INT NOT NULL PRIMARY KEY CONSTRAINT FK_INT_ID_DIRECCION 
-	FOREIGN KEY REFERENCES TBL_DIRECCIONES(INT_COD_DIRECCION),
-STR_CIUDAD VARCHAR(30)
+CREATE TABLE TBL_DIRECCIONES(
+INT_COD_DIRECCION INT NOT NULL PRIMARY KEY,
+STR_DIRECCION VARCHAR(50),
+INT_CIUDAD INT fOREIGN KEY REFERENCES TBL_CIUDADES(INT_COD_CIUDAD)
+);
+GO
+
+CREATE TABLE TBL_TIPO_TELEFONO (
+INT_COD_TELEFONO INT NOT NULL PRIMARY KEY,
+STR_TIPO_TELEFONO VARCHAR(30)
 );
 GO
 
 CREATE TABLE TBL_TELEFONOS(
 INT_COD_TELEFONO INT NOT NULL PRIMARY KEY,
-INT_NUMERO_TELEFONO INT
-);
-GO
-
-CREATE TABLE TBL_TIPO_TELEFONO (
-INT_ID_TELEFONO INT NOT NULL PRIMARY KEY CONSTRAINT FK_INT_ID_TELEFONO 
-	FOREIGN KEY REFERENCES TBL_TELEFONOS(INT_COD_TELEFONO),
-STR_TIPO_TELEFONO VARCHAR(30)
+INT_NUMERO_TELEFONO INT,
+INT_TIPO_TELEFONO INT fOREIGN KEY REFERENCES TBL_TIPO_TELEFONO(INT_COD_TELEFONO)
 );
 GO
 
@@ -176,235 +176,348 @@ ALTER TABLE TBL_INSCRIPCIONES ADD FOREIGN KEY (INT_COD_EDICION) REFERENCES TBL_E
 GO
 
 --//////////////////////////////////////////////////////////////////////////////////////////
+INSERT INTO TBL_CIUDADES (INT_COD_CIUDAD, STR_CIUDAD)
+VALUES
+    (1, 'BogotÃ¡'),
+    (2, 'MedellÃ­n'),
+    (3, 'Cali'),
+    (4, 'Barranquilla'),
+    (5, 'Cartagena'),
+    (6, 'Bucaramanga'),
+    (7, 'Santa Marta'),
+    (8, 'IbaguÃ©'),
+    (9, 'Pereira'),
+    (10, 'Manizales'),
+    (11, 'CÃºcuta'),
+    (12, 'Villavicencio'),
+    (13, 'Pasto'),
+    (14, 'Neiva'),
+    (15, 'Armenia'),
+    (16, 'Valledupar'),
+    (17, 'MonterÃ­a'),
+    (18, 'PopayÃ¡n'),
+    (19, 'Sincelejo'),
+    (20, 'Tunja'),
+    (21, 'Riohacha'),
+    (22, 'Florencia'),
+    (23, 'QuibdÃ³'),
+    (24, 'Yopal'),
+    (25, 'Mocoa'),
+    (26, 'San AndrÃ©s'),
+    (27, 'Puerto CarreÃ±o'),
+    (28, 'MitÃº'),
+    (29, 'Leticia'),
+    (30, 'InÃ­rida'),
+    (31, 'San JosÃ© del Guaviare'),
+    (32, 'Mitu'),
+    (33, 'Quibdo'),
+    (34, 'Buenaventura'),
+    (35, 'Tumaco'),
+    (36, 'Cienaga'),
+    (37, 'Girardot'),
+    (38, 'La Dorada'),
+    (39, 'Arauca'),
+    (40, 'Mompox'),
+    (41, 'TolÃº'),
+    (42, 'Since'),
+    (43, 'Yumbo'),
+    (44, 'CiÃ©naga'),
+    (45, 'JamundÃ­'),
+    (46, 'La Ceja'),
+    (47, 'Rionegro'),
+    (48, 'ChinchinÃ¡'),
+    (49, 'La UniÃ³n'),
+    (50, 'Puerto Tejada');
+GO
+SELECT * FROM TBL_CIUDADES;
 
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (1, 'Desarrollo Web', 120);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (2, 'Programación Java', 150);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (3, 'Diseño Gráfico', 90);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (4, 'Marketing Digital', 80);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (5, 'Gestión de Proyectos', 100);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (6, 'Redes y Comunicaciones', 110);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (7, 'Seguridad Informática', 130);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (8, 'Administración de Empresas', 90);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (9, 'Inglés para Negocios', 60);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (10, 'Contabilidad Financiera', 80);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (11, 'Recursos Humanos', 70);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (12, 'Ventas y Negociación', 100);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (13, 'Desarrollo de Apps Móviles', 120);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (14, 'Gestión de Calidad', 80);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (15, 'Marketing Digital Avanzado', 110);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (16, 'Diseño de Interiores', 90);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (17, 'Programación Python', 130);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (18, 'Finanzas Corporativas', 100);
-INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS) VALUES (19, 'Marketing en Redes Sociales', 80);
+INSERT INTO TBL_DIAS (INT_COD_DIA, STR_DIA)
+VALUES
+    (1,'Lunes'),
+    (2,'Martes'),
+    (3,'MiÃ©rcoles'),
+    (4,'Jueves'),
+    (5,'Viernes'),
+    (6,'SÃ¡bado'),
+    (7,'Domingo');
+GO
+SELECT * FROM TBL_DIAS;
+
+INSERT INTO TBL_TIPO_DOC (INT_COD_DOCUMENTO,STR_TIPO_DOC)
+VALUES
+    (1,'CC'),
+    (2,'TI'),
+    (3,'CE'),
+    (4,'NI'),
+    (5,'RC'),
+    (6,'PA'),
+    (7,'PE');
+GO
+SELECT * FROM TBL_TIPO_DOC;
+
+INSERT INTO TBL_TIPO_TELEFONO (INT_ID_TELEFONO,STR_TIPO_TELEFONO)
+VALUES
+    (1,'Casa'),
+    (2,'MÃ³vil'),
+    (3,'Trabajo'),
+    (4,'Personal'),
+    (5,'Principal'),
+    (6,'Fax'),
+    (7,'Otro');
+GO
+SELECT * FROM TBL_TIPO_TELEFONO;
+
+INSERT INTO TBL_CURSOS (INT_COD_CURSO, STR_TITULO, INT_NUMERO_HORAS)
+VALUES (1, 'Desarrollo Web', 120),
+	(2, 'Programaciï¿½n Java', 150),
+	(3, 'Diseï¿½o Grï¿½fico', 90),
+	(4, 'Marketing Digital', 80),
+	(5, 'Gestiï¿½n de Proyectos', 100),
+	(6, 'Redes y Comunicaciones', 110),
+	(7, 'Seguridad Informï¿½tica', 130),
+	(8, 'Administraciï¿½n de Empresas', 90),
+	(9, 'Inglï¿½s para Negocios', 60),
+	(10, 'Contabilidad Financiera', 80),
+	(11, 'Recursos Humanos', 70),
+	(12, 'Ventas y Negociaciï¿½n', 100),
+	(13, 'Desarrollo de Apps Mï¿½viles', 120),
+	(14, 'Gestiï¿½n de Calidad', 80),
+	(15, 'Marketing Digital Avanzado', 110),
+	(16, 'Diseï¿½o de Interiores', 90),
+	(17, 'Programaciï¿½n Python', 130),
+	(18, 'Finanzas Corporativas', 100),
+	(19, 'Marketing en Redes Sociales', 80);
+GO
 SELECT * FROM TBL_CURSOS;
-GO
 
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (1, 'Introducción al Desarrollo Web', 'Contenido del tema de introducción al desarrollo web');
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (2, 'HTML y CSS', 'Contenido del tema de HTML y CSS');
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (3, 'JavaScript', 'Contenido del tema de JavaScript');
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (4, 'Frameworks de Desarrollo Web', 'Contenido del tema de frameworks de desarrollo web');
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (5, 'Introducción a la Programación Java', 'Contenido del tema de introducción a la programación Java');
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (6, 'Programación Orientada a Objetos', 'Contenido del tema de programación orientada a objetos');
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (7, 'APIs y Librerías en Java', 'Contenido del tema de APIs y librerías en Java');
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (8, 'Diseño Gráfico Básico', 'Contenido del tema de diseño gráfico básico');
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (9, 'Herramientas de Diseño Gráfico', 'Contenido del tema de herramientas de diseño gráfico');
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (10, 'Diseño de Logos', 'Contenido del tema de diseño de logos');
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (11, 'Introducción al Marketing Digital', 'Contenido del tema de introducción al marketing digital');
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (12, 'Estrategias de Marketing en Redes', 'Contenido del tema de estrategias de marketing en redes');
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (13, 'Gestión de Proyectos de Marketing', 'Contenido del tema de gestión de proyectos de marketing');
-INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA) VALUES (14, 'Principios de Networking', 'Contenido del tema de principios de networking');
+INSERT INTO TBL_TEMAS (INT_COD_TEMA, STR_NOMBRE_TEMA, STR_CONTENIDO_TEMA)
+VALUES (1, 'Introducciï¿½n al Desarrollo Web', 'Contenido del tema de introducciï¿½n al desarrollo web'),
+        (2, 'HTML y CSS', 'Contenido del tema de HTML y CSS'),
+        (3, 'JavaScript', 'Contenido del tema de JavaScript'),
+        (4, 'Frameworks de Desarrollo Web', 'Contenido del tema de frameworks de desarrollo web'),
+        (5, 'Introducciï¿½n a la Programaciï¿½n Java', 'Contenido del tema de introducciï¿½n a la programaciï¿½n Java'),
+        (6, 'Programaciï¿½n Orientada a Objetos', 'Contenido del tema de programaciï¿½n orientada a objetos'),
+        (7, 'APIs y Librerï¿½as en Java', 'Contenido del tema de APIs y librerï¿½as en Java'),
+        (8, 'Diseï¿½o Grï¿½fico Bï¿½sico', 'Contenido del tema de diseï¿½o grï¿½fico bï¿½sico'),
+        (9, 'Herramientas de Diseï¿½o Grï¿½fico', 'Contenido del tema de herramientas de diseï¿½o grï¿½fico'),
+        (10, 'Diseï¿½o de Logos', 'Contenido del tema de diseï¿½o de logos'),
+        (11, 'Introducciï¿½n al Marketing Digital', 'Contenido del tema de introducciï¿½n al marketing digital'),
+        (12, 'Estrategias de Marketing en Redes', 'Contenido del tema de estrategias de marketing en redes'),
+        (13, 'Gestiï¿½n de Proyectos de Marketing', 'Contenido del tema de gestiï¿½n de proyectos de marketing'),
+        (14, 'Principios de Networking', 'Contenido del tema de principios de networking');
+GO
 SELECT * FROM TBL_TEMAS;
-GO
 
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (1, 1);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (1, 2);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (1, 3);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (2, 5);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (2, 6);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (2, 7);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (3, 8);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (3, 9);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (3, 10);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (4, 11);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (4, 13);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (5, 14);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (5, 6);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (6, 1);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (6, 3);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (7, 7);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (8, 4);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (8, 5);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (9, 9);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (9, 11);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (10, 13);
-INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA) VALUES (10, 14);
+INSERT INTO TBL_CURSOS_TEMAS (INT_COD_CURSO, INT_COD_TEMA)
+VALUES (1, 1),
+       (1, 2),
+       (1, 3),
+       (2, 5),
+       (2, 6),
+       (2, 7),
+       (3, 8),
+       (3, 9),
+       (3, 10),
+       (4, 11),
+       (4, 13),
+       (5, 14),
+       (5, 6),
+       (6, 1),
+       (6, 3),
+       (7, 7),
+       (8, 4),
+       (8, 5),
+       (9, 9),
+       (9, 11),
+       (10, 13),
+       (10, 14);
+GO
 SELECT * FROM TBL_CURSOS_TEMAS;
-GO
 
-INSERT INTO TBL_HORARIOS (INT_COD_HORARIO, DTE_HORA_INICIO, DTE_HORA_FIN) VALUES (1, '06:00', '08:00');
-INSERT INTO TBL_HORARIOS (INT_COD_HORARIO, DTE_HORA_INICIO, DTE_HORA_FIN) VALUES (2, '08:00', '10:00');
-INSERT INTO TBL_HORARIOS (INT_COD_HORARIO, DTE_HORA_INICIO, DTE_HORA_FIN) VALUES (3, '10:00', '12:00');
-INSERT INTO TBL_HORARIOS (INT_COD_HORARIO, DTE_HORA_INICIO, DTE_HORA_FIN) VALUES (4, '12:00', '14:00');
-INSERT INTO TBL_HORARIOS (INT_COD_HORARIO, DTE_HORA_INICIO, DTE_HORA_FIN) VALUES (5, '14:00', '16:00');
-INSERT INTO TBL_HORARIOS (INT_COD_HORARIO, DTE_HORA_INICIO, DTE_HORA_FIN) VALUES (6, '16:00', '18:00');
-INSERT INTO TBL_HORARIOS (INT_COD_HORARIO, DTE_HORA_INICIO, DTE_HORA_FIN) VALUES (7, '18:00', '20:00');
+INSERT INTO TBL_HORARIOS (INT_COD_HORARIO, DTE_HORA_INICIO, DTE_HORA_FIN)
+VALUES (1, '06:00', '08:00'),
+       (2, '08:00', '10:00'),
+       (3, '10:00', '12:00'),
+       (4, '12:00', '14:00'),
+       (5, '14:00', '16:00'),
+       (6, '16:00', '18:00'),
+       (7, '18:00', '20:00');
+GO
 SELECT * FROM TBL_HORARIOS;
-GO
 
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (1, 'Licenciatura en Administración de Empresas', 'Título universitario en el campo de la administración de empresas.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (2, 'Ingeniería Informática', 'Título universitario en el campo de la ingeniería de software y sistemas informáticos.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (3, 'Técnico en Contabilidad', 'Título técnico en el área de la contabilidad y finanzas.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (4, 'Maestría en Marketing', 'Título de posgrado en el campo del marketing y la gestión comercial.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (5, 'Técnico en Diseño Gráfico', 'Título técnico en el área del diseño gráfico y la comunicación visual.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (6, 'Licenciatura en Derecho', 'Título universitario en el campo del derecho y la legislación.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (7, 'Ingeniería Civil', 'Título universitario en el campo de la ingeniería civil y la construcción.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (8, 'Técnico en Enfermería', 'Título técnico en el área de la enfermería y cuidado de pacientes.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (9, 'Maestría en Finanzas', 'Título de posgrado en el campo de las finanzas y la gestión económica.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (10, 'Técnico en Electricidad', 'Título técnico en el área de la electricidad y los sistemas eléctricos.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (11, 'Licenciatura en Psicología', 'Título universitario en el campo de la psicología y el estudio del comportamiento humano.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (12, 'Ingeniería Industrial', 'Título universitario en el campo de la ingeniería industrial y la optimización de procesos.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (13, 'Técnico en Mecánica Automotriz', 'Título técnico en el área de la mecánica de vehículos y reparación automotriz.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (14, 'Maestría en Recursos Humanos', 'Título de posgrado en el campo de la gestión de recursos humanos y el talento empresarial.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (15, 'Técnico en Gastronomía', 'Título técnico en el área de la gastronomía y las técnicas culinarias.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (16, 'Licenciatura en Arquitectura', 'Título universitario en el campo de la arquitectura y el diseño de edificaciones.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (17, 'Ingeniería Química', 'Título universitario en el campo de la ingeniería química y los procesos industriales.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (18, 'Técnico en Programación de Software', 'Título técnico en el área de la programación y el desarrollo de software.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (19, 'Maestría en Administración de Proyectos', 'Título de posgrado en el campo de la gestión de proyectos y la planificación estratégica.');
-INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION) VALUES (20, 'Técnico en Marketing Digital', 'Título técnico en el área del marketing digital y las estrategias de publicidad en línea.');
+INSERT INTO TBL_TITULO_ACADEMICO (INT_COD_TITULO, STR_NOMBRE, STR_DESCRIPCION)
+VALUES (1, 'Licenciatura en Administraciï¿½n de Empresas', 'Tï¿½tulo universitario en el campo de la administraciï¿½n de empresas.'),
+       (2, 'Ingenierï¿½a Informï¿½tica', 'Tï¿½tulo universitario en el campo de la ingenierï¿½a de software y sistemas informï¿½ticos.'),
+       (3, 'Tï¿½cnico en Contabilidad', 'Tï¿½tulo tï¿½cnico en el ï¿½rea de la contabilidad y finanzas.'),
+       (4, 'Maestrï¿½a en Marketing', 'Tï¿½tulo de posgrado en el campo del marketing y la gestiï¿½n comercial.'),
+       (5, 'Tï¿½cnico en Diseï¿½o Grï¿½fico', 'Tï¿½tulo tï¿½cnico en el ï¿½rea del diseï¿½o grï¿½fico y la comunicaciï¿½n visual.'),
+       (6, 'Licenciatura en Derecho', 'Tï¿½tulo universitario en el campo del derecho y la legislaciï¿½n.'),
+       (7, 'Ingenierï¿½a Civil', 'Tï¿½tulo universitario en el campo de la ingenierï¿½a civil y la construcciï¿½n.'),
+       (8, 'Tï¿½cnico en Enfermerï¿½a', 'Tï¿½tulo tï¿½cnico en el ï¿½rea de la enfermerï¿½a y cuidado de pacientes.'),
+       (9, 'Maestrï¿½a en Finanzas', 'Tï¿½tulo de posgrado en el campo de las finanzas y la gestiï¿½n econï¿½mica.'),
+       (10, 'Tï¿½cnico en Electricidad', 'Tï¿½tulo tï¿½cnico en el ï¿½rea de la electricidad y los sistemas elï¿½ctricos.'),
+       (11, 'Licenciatura en Psicologï¿½a', 'Tï¿½tulo universitario en el campo de la psicologï¿½a y el estudio del comportamiento humano.'),
+       (12, 'Ingenierï¿½a Industrial', 'Tï¿½tulo universitario en el campo de la ingenierï¿½a industrial y la optimizaciï¿½n de procesos.'),
+       (13, 'Tï¿½cnico en Mecï¿½nica Automotriz', 'Tï¿½tulo tï¿½cnico en el ï¿½rea de la mecï¿½nica de vehï¿½culos y reparaciï¿½n automotriz.'),
+       (14, 'Maestrï¿½a en Recursos Humanos', 'Tï¿½tulo de posgrado en el campo de la gestiï¿½n de recursos humanos y el talento empresarial.'),
+       (15, 'Tï¿½cnico en Gastronomï¿½a', 'Tï¿½tulo tï¿½cnico en el ï¿½rea de la gastronomï¿½a y las tï¿½cnicas culinarias.'),
+       (16, 'Licenciatura en Arquitectura', 'Tï¿½tulo universitario en el campo de la arquitectura y el diseï¿½o de edificaciones.'),
+       (17, 'Ingenierï¿½a Quï¿½mica', 'Tï¿½tulo universitario en el campo de la ingenierï¿½a quï¿½mica y los procesos industriales.'),
+       (18, 'Tï¿½cnico en Programaciï¿½n de Software', 'Tï¿½tulo tï¿½cnico en el ï¿½rea de la programaciï¿½n y el desarrollo de software.'),
+       (19, 'Maestrï¿½a en Administraciï¿½n de Proyectos', 'Tï¿½tulo de posgrado en el campo de la gestiï¿½n de proyectos y la planificaciï¿½n estratï¿½gica.'),
+       (20, 'Tï¿½cnico en Marketing Digital', 'Tï¿½tulo tï¿½cnico en el ï¿½rea del marketing digital y las estrategias de publicidad en lï¿½nea.');
+GO
 SELECT * FROM TBL_TITULO_ACADEMICO;
-GO
 
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (1, '2022-01-05');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (2, '2021-09-15');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (3, '2022-03-10');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (4, '2022-05-20');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (5, '2021-11-30');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (6, '2022-02-08');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (7, '2022-04-25');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (8, '2021-10-12');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (9, '2022-03-01');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (10, '2022-06-18');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (11, '2021-12-08');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (12, '2022-02-22');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (13, '2022-05-03');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (14, '2022-01-15');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (15, '2021-10-25');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (16, '2022-03-18');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (17, '2022-05-08');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (18, '2021-11-18');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (19, '2022-02-28');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (20, '2022-06-10');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (21, '2021-12-30');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (22, '2022-03-08');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (23, '2022-05-15');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (24, '2022-01-25');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (25, '2021-10-05');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (26, '2022-02-15');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (27, '2022-04-30');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (28, '2021-11-10');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (29, '2022-03-25');
-INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO) VALUES (30, '2022-06-05');
+INSERT INTO TBL_PROFESORES (INT_ID_PROFESOR, DTE_FECHA_INGRESO)
+VALUES (1, '2022-01-05'),
+       (2, '2021-09-15'),
+       (3, '2022-03-10'),
+       (4, '2022-05-20'),
+       (5, '2021-11-30'),
+       (6, '2022-02-08'),
+       (7, '2022-04-25'),
+       (8, '2021-10-12'),
+       (9, '2022-03-01'),
+       (10, '2022-06-18'),
+       (11, '2021-12-08'),
+       (12, '2022-02-22'),
+       (13, '2022-05-03'),
+       (14, '2022-01-15'),
+       (15, '2021-10-25'),
+       (16, '2022-03-18'),
+       (17, '2022-05-08'),
+       (18, '2021-11-18'),
+       (19, '2022-02-28'),
+       (20, '2022-06-10'),
+       (21, '2021-12-30'),
+       (22, '2022-03-08'),
+       (23, '2022-05-15'),
+       (24, '2022-01-25'),
+       (25, '2021-10-05'),
+       (26, '2022-02-15'),
+       (27, '2022-04-30'),
+       (28, '2021-11-10'),
+       (29, '2022-03-25'),
+       (30, '2022-06-05');
+GO
 SELECT * FROM TBL_PROFESORES;
-GO
 
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (1, 1);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (2, 2);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (3, 3);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (4, 4);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (5, 5);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (6, 6);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (7, 7);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (8, 8);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (9, 9);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (10, 10);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (11, 11);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (12, 12);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (13, 13);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (14, 14);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (15, 15);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (16, 16);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (17, 17);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (18, 18);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (19, 19);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (20, 20);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (21, 11);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (22, 12);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (23, 13);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (24, 14);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (25, 15);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (26, 16);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (27, 17);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (28, 18);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (29, 19);
-INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO) VALUES (30, 10);
+INSERT INTO TBL_PROFESOR_TITULO (INT_COD_PROFESOR, INT_COD_TITULO)
+VALUES (1, 1),
+       (2, 2),
+       (3, 3),
+       (4, 4),
+       (5, 5),
+       (6, 6),
+       (7, 7),
+       (8, 8),
+       (9, 9),
+       (10, 10),
+       (11, 11),
+       (12, 12),
+       (13, 13),
+       (14, 14),
+       (15, 15),
+       (16, 16),
+       (17, 17),
+       (18, 18),
+       (19, 19),
+       (20, 20),
+       (21, 11),
+       (22, 12),
+       (23, 13),
+       (24, 14),
+       (25, 15),
+       (26, 16),
+       (27, 17),
+       (28, 18),
+       (29, 19),
+       (30, 10);
+GO
 SELECT * FROM TBL_PROFESOR_TITULO;
-GO
 
-INSERT INTO TBL_EMPLEADOS (INT_ID_EMPLEADO, STR_NOMBRE, INT_CEDULA, DTE_FECHA_NACIMIENTO) VALUES (1, 'Juan Pérez', 1234567890, '1990-01-15');
-INSERT INTO TBL_EMPLEADOS (INT_ID_EMPLEADO, STR_NOMBRE, INT_CEDULA, DTE_FECHA_NACIMIENTO) VALUES (2, 'María López', 2345678901, '1985-05-20');
-INSERT INTO TBL_EMPLEADOS (INT_ID_EMPLEADO, STR_NOMBRE, INT_CEDULA, DTE_FECHA_NACIMIENTO) VALUES (3, 'Pedro Gómez', 3456789012, '1992-11-10');
-INSERT INTO TBL_EMPLEADOS (INT_ID_EMPLEADO, STR_NOMBRE, INT_CEDULA, DTE_FECHA_NACIMIENTO) VALUES (4, 'Ana Rodríguez', 4567890123, '1988-07-03');
-INSERT INTO TBL_EMPLEADOS (INT_ID_EMPLEADO, STR_NOMBRE, INT_CEDULA, DTE_FECHA_NACIMIENTO) VALUES (5, 'Luisa Martínez', 5678901234, '1995-03-28');
-INSERT INTO TBL_EMPLEADOS (INT_ID_EMPLEADO, STR_NOMBRE, INT_CEDULA, DTE_FECHA_NACIMIENTO) VALUES (6, 'Carlos Herrera', 6789012345, '1991-09-12');
-INSERT INTO TBL_EMPLEADOS (INT_ID_EMPLEADO, STR_NOMBRE, INT_CEDULA, DTE_FECHA_NACIMIENTO) VALUES (7, 'Laura Torres', 7890123456, '1987-04-25');
-INSERT INTO TBL_EMPLEADOS (INT_ID_EMPLEADO, STR_NOMBRE, INT_CEDULA, DTE_FECHA_NACIMIENTO) VALUES (8, 'Mario Sánchez', 8901234567, '1993-12-18');
-INSERT INTO TBL_EMPLEADOS (INT_ID_EMPLEADO, STR_NOMBRE, INT_CEDULA, DTE_FECHA_NACIMIENTO) VALUES (9, 'Sofía Jiménez', 9012345678, '1989-08-07');
-INSERT INTO TBL_EMPLEADOS (INT_ID_EMPLEADO, STR_NOMBRE, INT_CEDULA, DTE_FECHA_NACIMIENTO) VALUES (10, 'Andrés Castro', 1234509876, '1994-02-22');
+INSERT INTO TBL_EMPLEADOS (INT_ID_EMPLEADO, STR_NOMBRE, INT_CEDULA, DTE_FECHA_NACIMIENTO)
+VALUES (1, 'Juan Pï¿½rez', 1234567890, '1990-01-15'),
+(2, 'Marï¿½a Lï¿½pez', 2345678901, '1985-05-20'),
+(3, 'Pedro Gï¿½mez', 3456789012, '1992-11-10'),
+(4, 'Ana Rodrï¿½guez', 4567890123, '1988-07-03'),
+(5, 'Luisa Martï¿½nez', 5678901234, '1995-03-28'),
+(6, 'Carlos Herrera', 6789012345, '1991-09-12'),
+(7, 'Laura Torres', 7890123456, '1987-04-25'),
+(8, 'Mario Sï¿½nchez', 8901234567, '1993-12-18'),
+(9, 'Sofï¿½a Jimï¿½nez', 9012345678, '1989-08-07'),
+(10, 'Andrï¿½s Castro', 1234509876, '1994-02-22');
 SELECT * FROM TBL_EMPLEADOS;
 GO
 
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (1, 'Ana García', 9876543210);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (2, 'Luis González', 8765432109);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (3, 'María Torres', 7654321098);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (4, 'Juan López', 6543210987);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (5, 'Pedro Martínez', 5432109876);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (6, 'Laura Sánchez', 4321098765);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (7, 'Carlos Rodríguez', 3210987654);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (8, 'Sofía Herrera', 2109876543);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (9, 'Mario Castro', 1098765432);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (10, 'Andrea Jiménez', 0987654321);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (11, 'Fernando Pérez', 9876543210);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (12, 'Julia González', 8765432109);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (13, 'Gabriel Torres', 7654321098);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (14, 'Mariana López', 6543210987);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (15, 'Alejandro Martínez', 5432109876);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (16, 'Valentina Sánchez', 4321098765);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (17, 'Diego Rodríguez', 3210987654);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (18, 'Camila Herrera', 2109876543);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (19, 'Lucas Castro', 1098765432);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (20, 'Isabella Jiménez', 0987654321);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (21, 'Emilio Pérez', 9876543210);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (22, 'Renata González', 8765432109);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (23, 'Maximiliano Torres', 7654321098);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (24, 'Valeria López', 6543210987);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (25, 'Thiago Martínez', 5432109876);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (26, 'Emma Sánchez', 4321098765);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (27, 'Joaquín Rodríguez', 3210987654);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (28, 'Catalina Herrera', 2109876543);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (29, 'Nicolás Castro', 1098765432);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (30, 'Valentina Gómez', 0987654321);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (31, 'Santiago Vargas', 9876543210);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (32, 'Martina Silva', 8765432109);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (33, 'Benjamín Molina', 7654321098);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (34, 'Lucía Torres', 6543210987);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (35, 'Mateo González', 5432109876);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (36, 'Emilia López', 4321098765);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (37, 'Sebastián Ramírez', 3210987654);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (38, 'Isabella Castro', 2109876543);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (39, 'Dylan Morales', 1098765432);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (40, 'Valentina Hernández', 0987654321);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (41, 'Sebastián Vargas', 9876543210);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (42, 'Emma Silva', 8765432109);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (43, 'Joaquín Molina', 7654321098);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (44, 'Isabella Torres', 6543210987);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (45, 'Gabriel González', 5432109876);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (46, 'Valentina López', 4321098765);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (47, 'Thiago Ramírez', 3210987654);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (48, 'Sofía Castro', 2109876543);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (49, 'Lucas Morales', 1098765432);
-INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO) VALUES (50, 'Mía Hernández', 0987654321);
+INSERT INTO TBL_ESTUDIANTES (INT_ID_ESTUDIANTE, STR_NOMBRE, INT_NUMERO_DOCUMENTO)
+VALUES (1, 'Ana Garcï¿½a', 9876543210),
+(2, 'Luis Gonzï¿½lez', 8765432109),
+(3, 'Marï¿½a Torres', 7654321098),
+(4, 'Juan Lï¿½pez', 6543210987),
+(5, 'Pedro Martï¿½nez', 5432109876),
+(6, 'Laura Sï¿½nchez', 4321098765),
+(7, 'Carlos Rodrï¿½guez', 3210987654),
+(8, 'Sofï¿½a Herrera', 2109876543),
+(9, 'Mario Castro', 1098765432),
+(10, 'Andrea Jimï¿½nez', 0987654321),
+(11, 'Fernando Pï¿½rez', 9876543210),
+(12, 'Julia Gonzï¿½lez', 8765432109),
+(13, 'Gabriel Torres', 7654321098),
+(14, 'Mariana Lï¿½pez', 6543210987),
+(15, 'Alejandro Martï¿½nez', 5432109876),
+(16, 'Valentina Sï¿½nchez', 4321098765),
+(17, 'Diego Rodrï¿½guez', 3210987654),
+(18, 'Camila Herrera', 2109876543),
+(19, 'Lucas Castro', 1098765432),
+(20, 'Isabella Jimï¿½nez', 0987654321),
+(21, 'Emilio Pï¿½rez', 9876543210),
+(22, 'Renata Gonzï¿½lez', 8765432109),
+(23, 'Maximiliano Torres', 7654321098),
+(24, 'Valeria Lï¿½pez', 6543210987),
+(25, 'Thiago Martï¿½nez', 5432109876),
+(26, 'Emma Sï¿½nchez', 4321098765),
+(27, 'Joaquï¿½n Rodrï¿½guez', 3210987654),
+(28, 'Catalina Herrera', 2109876543),
+(29, 'Nicolï¿½s Castro', 1098765432),
+(30, 'Valentina Gï¿½mez', 0987654321),
+(31, 'Santiago Vargas', 9876543210),
+(32, 'Martina Silva', 8765432109),
+(33, 'Benjamï¿½n Molina', 7654321098),
+(34, 'Lucï¿½a Torres', 6543210987),
+(35, 'Mateo Gonzï¿½lez', 5432109876),
+(36, 'Emilia Lï¿½pez', 4321098765),
+(37, 'Sebastiï¿½n Ramï¿½rez', 3210987654),
+(38, 'Isabella Castro', 2109876543),
+(39, 'Dylan Morales', 1098765432),
+(40, 'Valentina Hernï¿½ndez', 0987654321),
+(41, 'Sebastiï¿½n Vargas', 9876543210),
+(42, 'Emma Silva', 8765432109),
+(43, 'Joaquï¿½n Molina', 7654321098),
+(44, 'Isabella Torres', 6543210987),
+(45, 'Gabriel Gonzï¿½lez', 5432109876),
+(46, 'Valentina Lï¿½pez', 4321098765),
+(47, 'Thiago Ramï¿½rez', 3210987654),
+(48, 'Sofï¿½a Castro', 2109876543),
+(49, 'Lucas Morales', 1098765432),
+(50, 'Mï¿½a Hernï¿½ndez', 0987654321);
 SELECT * FROM TBL_ESTUDIANTES;
 GO
+
+INSERT INTO TBL_FORMA_PAGO(INT_COD_FORMA_PAGO, STR_DESCRIPCION, BOL_ACTIVO)
+VALUES
+    (1, 'Tarjeta de crÃ©dito', 1),
+    (2, 'Transferencia bancaria', 1),
+    (3, 'Efectivo', 1),
+    (4, 'Cheque', 1),
+    (5, 'PayPal', 1),
+    (6, 'Tarjeta de dÃ©bito', 1),
+    (7, 'Pago mÃ³vil', 1),
+    (8, 'DepÃ³sito bancario', 1),
+    (9, 'Transferencia electrÃ³nica', 1);
+GO
+SELECT * FROM TBL_FORMA_PAGO;
 --=================Relacionada con: TBL_CURSOS=================
 
 CREATE PROCEDURE sp_BuscarTodasInscripciones
@@ -467,7 +580,7 @@ BEGIN
         -- Verificar si el curso ya existe
         IF EXISTS (SELECT 1 FROM TBL_CURSOS WHERE INT_COD_CURSO = @INT_COD_CURSO)
         BEGIN
-            RAISERROR('El curso con el código %d ya existe.', 16, 1, @INT_COD_CURSO);
+            RAISERROR('El curso con el cï¿½digo %d ya existe.', 16, 1, @INT_COD_CURSO);
             ROLLBACK;
             RETURN;
         END
@@ -501,7 +614,7 @@ BEGIN
         -- Verificar si el curso existe
         IF NOT EXISTS (SELECT 1 FROM TBL_CURSOS WHERE INT_COD_CURSO = @INT_COD_CURSO)
         BEGIN
-            RAISERROR('El curso con el código %d no existe.', 16, 1, @INT_COD_CURSO);
+            RAISERROR('El curso con el cï¿½digo %d no existe.', 16, 1, @INT_COD_CURSO);
             ROLLBACK;
             RETURN;
         END
@@ -521,7 +634,7 @@ BEGIN
 END
 GO
 
---EXEC sp_ModificarCurso @INT_COD_CURSO = 20, @STR_TITULO = 'Nuevo Título', @INT_NUMERO_HORAS = 20;
+--EXEC sp_ModificarCurso @INT_COD_CURSO = 20, @STR_TITULO = 'Nuevo Tï¿½tulo', @INT_NUMERO_HORAS = 20;
 
 CREATE PROCEDURE sp_EliminarCurso
 (
@@ -536,7 +649,7 @@ BEGIN
         -- Verificar si el curso existe
         IF NOT EXISTS (SELECT 1 FROM TBL_CURSOS WHERE INT_COD_CURSO = @INT_COD_CURSO)
         BEGIN
-            RAISERROR('El curso con el código %d no existe.', 16, 1, @INT_COD_CURSO);
+            RAISERROR('El curso con el cï¿½digo %d no existe.', 16, 1, @INT_COD_CURSO);
             ROLLBACK;
             RETURN;
         END
@@ -564,14 +677,14 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Verificar si la inscripción existe
+    -- Verificar si la inscripciï¿½n existe
     IF NOT EXISTS (SELECT 1 FROM TBL_INSCRIPCIONES WHERE INT_COD_INSCRIPCION = @INT_COD_INSCRIPCION)
     BEGIN
-        RAISERROR('La inscripción con el código %d no existe.', 16, 1, @INT_COD_INSCRIPCION);
+        RAISERROR('La inscripciï¿½n con el cï¿½digo %d no existe.', 16, 1, @INT_COD_INSCRIPCION);
         RETURN;
     END
 
-    -- Obtener los datos de la inscripción
+    -- Obtener los datos de la inscripciï¿½n
     SELECT INT_COD_INSCRIPCION, INT_ID_EMPLEADO, INT_ID_ESTUDIANTE, INT_COD_EDICION, FLT_VALOR_PAGO, INT_CANTIDAD
     FROM TBL_INSCRIPCIONES
     WHERE INT_COD_INSCRIPCION = @INT_COD_INSCRIPCION;
@@ -610,15 +723,15 @@ BEGIN
             RETURN;
         END
 
-        -- Verificar si la edición del curso existe
+        -- Verificar si la ediciï¿½n del curso existe
         IF NOT EXISTS (SELECT 1 FROM TBL_EDICION_CURSOS WHERE INT_COD_EDICION = @INT_COD_EDICION)
         BEGIN
-            RAISERROR('La edición del curso con el código %d no existe.', 16, 1, @INT_COD_EDICION);
+            RAISERROR('La ediciï¿½n del curso con el cï¿½digo %d no existe.', 16, 1, @INT_COD_EDICION);
             ROLLBACK;
             RETURN;
         END
 
-        -- Insertar la nueva inscripción
+        -- Insertar la nueva inscripciï¿½n
         INSERT INTO TBL_INSCRIPCIONES (INT_ID_EMPLEADO, INT_ID_ESTUDIANTE, INT_COD_EDICION, FLT_VALOR_PAGO, INT_CANTIDAD)
         VALUES (@INT_ID_EMPLEADO, @INT_ID_ESTUDIANTE, @INT_COD_EDICION, @FLT_VALOR_PAGO, @INT_CANTIDAD);
 
@@ -644,15 +757,15 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        -- Verificar si la inscripción existe
+        -- Verificar si la inscripciï¿½n existe
         IF NOT EXISTS (SELECT 1 FROM TBL_INSCRIPCIONES WHERE INT_COD_INSCRIPCION = @INT_COD_INSCRIPCION)
         BEGIN
-            RAISERROR('La inscripción con el código %d no existe.', 16, 1, @INT_COD_INSCRIPCION);
+            RAISERROR('La inscripciï¿½n con el cï¿½digo %d no existe.', 16, 1, @INT_COD_INSCRIPCION);
             ROLLBACK;
             RETURN;
         END
 
-        -- Modificar la inscripción
+        -- Modificar la inscripciï¿½n
         UPDATE TBL_INSCRIPCIONES
         SET FLT_VALOR_PAGO = @FLT_VALOR_PAGO,
             INT_CANTIDAD = @INT_CANTIDAD
@@ -678,15 +791,15 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        -- Verificar si la inscripción existe
+        -- Verificar si la inscripciï¿½n existe
         IF NOT EXISTS (SELECT 1 FROM TBL_INSCRIPCIONES WHERE INT_COD_INSCRIPCION = @INT_COD_INSCRIPCION)
         BEGIN
-            RAISERROR('La inscripción con el código %d no existe.', 16, 1, @INT_COD_INSCRIPCION);
+            RAISERROR('La inscripciï¿½n con el cï¿½digo %d no existe.', 16, 1, @INT_COD_INSCRIPCION);
             ROLLBACK;
             RETURN;
         END
 
-        -- Eliminar la inscripción
+        -- Eliminar la inscripciï¿½n
         DELETE FROM TBL_INSCRIPCIONES WHERE INT_COD_INSCRIPCION = @INT_COD_INSCRIPCION;
 
         COMMIT;
@@ -714,13 +827,13 @@ BEGIN
     SET @INT_CANTIDAD = NULL;
 
     BEGIN TRY
-        -- Verificar si el detalle de inscripción existe
+        -- Verificar si el detalle de inscripciï¿½n existe
         IF NOT EXISTS (SELECT 1 FROM TBL_DETALLE_INSCRIPCION WHERE INT_COD_DETALLE_INSCRIPCION = @INT_COD_DETALLE_INSCRIPCION)
         BEGIN
-            THROW 50001, 'El detalle de inscripción no existe.', 1;
+            THROW 50001, 'El detalle de inscripciï¿½n no existe.', 1;
         END
 
-        -- Obtener los datos del detalle de inscripción
+        -- Obtener los datos del detalle de inscripciï¿½n
         SELECT @FLT_VALOR = FLT_VALOR, @INT_CANTIDAD = INT_CANTIDAD
         FROM TBL_DETALLE_INSCRIPCION
         WHERE INT_COD_DETALLE_INSCRIPCION = @INT_COD_DETALLE_INSCRIPCION;
@@ -743,13 +856,13 @@ BEGIN
     SET NOCOUNT ON;
 
     BEGIN TRY
-        -- Verificar si existen detalles de inscripción
+        -- Verificar si existen detalles de inscripciï¿½n
         IF NOT EXISTS (SELECT 1 FROM TBL_DETALLE_INSCRIPCION)
         BEGIN
-            THROW 50001, 'No existen detalles de inscripción.', 1;
+            THROW 50001, 'No existen detalles de inscripciï¿½n.', 1;
         END
 
-        -- Obtener todos los detalles de inscripción
+        -- Obtener todos los detalles de inscripciï¿½n
         SELECT INT_COD_DETALLE_INSCRIPCION, FLT_VALOR, INT_CANTIDAD
         FROM TBL_DETALLE_INSCRIPCION;
     END TRY
@@ -772,13 +885,13 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        -- Verificar si el detalle de inscripción ya existe
+        -- Verificar si el detalle de inscripciï¿½n ya existe
         IF EXISTS (SELECT 1 FROM TBL_DETALLE_INSCRIPCION WHERE INT_COD_DETALLE_INSCRIPCION = @INT_COD_DETALLE_INSCRIPCION)
         BEGIN
-            THROW 50001, 'El detalle de inscripción ya existe.', 1;
+            THROW 50001, 'El detalle de inscripciï¿½n ya existe.', 1;
         END
 
-        -- Insertar el nuevo detalle de inscripción
+        -- Insertar el nuevo detalle de inscripciï¿½n
         INSERT INTO TBL_DETALLE_INSCRIPCION (INT_COD_DETALLE_INSCRIPCION, FLT_VALOR, INT_CANTIDAD)
         VALUES (@INT_COD_DETALLE_INSCRIPCION, @FLT_VALOR, @INT_CANTIDAD);
 
@@ -803,13 +916,13 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        -- Verificar si el detalle de inscripción existe
+        -- Verificar si el detalle de inscripciï¿½n existe
         IF NOT EXISTS (SELECT 1 FROM TBL_DETALLE_INSCRIPCION WHERE INT_COD_DETALLE_INSCRIPCION = @INT_COD_DETALLE_INSCRIPCION)
         BEGIN
-            THROW 50001, 'El detalle de inscripción no existe.', 1;
+            THROW 50001, 'El detalle de inscripciï¿½n no existe.', 1;
         END
 
-        -- Modificar el detalle de inscripción
+        -- Modificar el detalle de inscripciï¿½n
         UPDATE TBL_DETALLE_INSCRIPCION
         SET FLT_VALOR = @FLT_VALOR,
             INT_CANTIDAD = @INT_CANTIDAD
@@ -834,13 +947,13 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        -- Verificar si el detalle de inscripción existe
+        -- Verificar si el detalle de inscripciï¿½n existe
         IF NOT EXISTS (SELECT 1 FROM TBL_DETALLE_INSCRIPCION WHERE INT_COD_DETALLE_INSCRIPCION = @INT_COD_DETALLE_INSCRIPCION)
         BEGIN
-            THROW 50001, 'El detalle de inscripción no existe.', 1;
+            THROW 50001, 'El detalle de inscripciï¿½n no existe.', 1;
         END
 
-        -- Eliminar el detalle de inscripción
+        -- Eliminar el detalle de inscripciï¿½n
         DELETE FROM TBL_DETALLE_INSCRIPCION WHERE INT_COD_DETALLE_INSCRIPCION = @INT_COD_DETALLE_INSCRIPCION;
 
         COMMIT TRANSACTION;
