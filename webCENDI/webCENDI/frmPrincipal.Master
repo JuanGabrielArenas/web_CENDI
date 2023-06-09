@@ -99,7 +99,12 @@
                     </td>
                     <td class="auto-style8">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder4" runat="server">
-                            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/12.png" />
+                            <asp:ScriptManager ID="ScriptManager1" runat="server">
+                            </asp:ScriptManager>
+                            <asp:Panel ID="Panel1" runat="server">
+                                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/12.png" />
+                            </asp:Panel>
+&nbsp;
                         </asp:ContentPlaceHolder>
                     </td>
                 </tr>
